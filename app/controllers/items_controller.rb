@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
       response = Amazon::Ecs.item_search(params[:q] , 
                                   :search_index => 'All' , 
                                   :response_group => 'Medium' , 
-                                  :country => 'jp')
+                                  :country => 'jp') 
       @amazon_items = response.items
     end
   end

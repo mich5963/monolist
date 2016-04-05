@@ -13,7 +13,7 @@ class OwnershipsController < ApplicationController
       begin
         # TODO 商品情報の取得 Amazon::Ecs.item_lookupを用いてください
         # response = {}
-        response = Amazon::Ecs.item_lookup(@item.asin, country: 'jp')
+        response = Amazon::Ecs.item_lookup(@item.asin, response_group: 'Medium', country: 'jp')
         
         
       rescue Amazon::RequestError => e
@@ -40,7 +40,7 @@ class OwnershipsController < ApplicationController
       current_user.want(@item)
     end
     
-    @type = params[:type]
+    # @type = params[:type]
 
   end
 
@@ -57,7 +57,7 @@ class OwnershipsController < ApplicationController
       current_user.unwant(@item)
     end
     
-    @type = params[:type]
+    # @type = params[:type]
     
 
   end

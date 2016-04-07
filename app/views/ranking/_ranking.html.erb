@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>順位</th>
+          <th>商品イメージ</th>
+          <th>商品名</th>
+          <th>人数</th>
+          <th>Amazon商品情報</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% last_count = 0 %>
+      <% last_rank = 0 %>
+      <% item_counts.each.with_index(1) do | (item , count ), index | %>
+        <% if count == last_count %>
+          <% rank = last_rank %>
+          <% last_count = count %>
+        <% else %>
+          <% rank = index %>
+          <% last_count = count %>
+          <% last_rank = index %>
+        <% end %>
+        <tr>
+          <th scope="row"><%= rank %></th>
+          <td>
+            <a href=<%= item_path(item.id) %> >
+            <% if item.medium_image.present? %>
+              <%= image_tag(item.medium_image , alt: item.title) %>
+            <% else %>
+              <%= image_tag("no-image.png" , size: "180", alt: item.title) %>
+            <% end %>
+            </a>
+          </td>
+          <td><%= item.title %></td>
+          <td><%= count %>人</td>
+          <td>
+            <%= link_to(image_tag("amazon-button.png", {alt: "Amazon詳細ページへ"}), item.detail_page_url , target: '_blank') %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

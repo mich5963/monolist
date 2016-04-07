@@ -1,0 +1,9 @@
+<% content_for :head do %>
+    <title>Haveランキング|Monolist</title>
+    <meta name="description" content="みんなが持っている商品のランキングです。">
+<% end %>
+<h1>
+    <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+    Have の多いランキング
+</h1>
+<%= render 'ranking' , item_counts: @item_counts %>
